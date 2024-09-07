@@ -1,0 +1,27 @@
+#
+# Basic setup to run the OpenSensorHub Node using Docker Compose.
+#
+# Run with a command line like this:
+#   docker compose up -d
+#
+# View the logs with something like this:
+#   docker compose logs -f
+#
+# Note that this requires the new Docker Compose plugin, and will not run with
+# the older "docker-compose" script.
+#
+name: osh-node
+services:
+  osh:
+    image: [DOCKER REPO URL]/[PATH]/[PROJECT]:[TAG]
+    ports:
+      - 8080:8080/tcp
+      - 8443:8443/tcp
+    volumes:
+      - ./config:/opt/osh/config
+      - ./data:/opt/osh/data
+      - ./db:/opt/osh/db
+      - ./userclasses:/opt/osh/userclasses
+      - ./userlib:/opt/osh/userlib
+      - ./logs:/opt/osh/.moduledata
+      - ./bundles:/opt/osh/bundles
