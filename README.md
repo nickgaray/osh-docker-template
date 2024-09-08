@@ -110,8 +110,6 @@ will be first in the classpath, before any other libraries included in the image
 ● **userlib**: Any additional libraries that the user may want to include in the classpath after install. These will be
 second in the classpath, before other libraries that are included in the image.
 
-● **bundles**: # Any additional OSGi Bundles that the user may want to include after install.
-
 The command to execute is:
 
      docker compose -f docker_compose.yml up -d
