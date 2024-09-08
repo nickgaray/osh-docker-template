@@ -24,4 +24,3 @@ services:
       - ./userclasses:/opt/osh/userclasses
       - ./userlib:/opt/osh/userlib
       - ./logs:/opt/osh/.moduledata
-      - ./bundles:/opt/osh/bundles
