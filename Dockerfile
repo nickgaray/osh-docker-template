@@ -85,6 +85,7 @@ RUN sed -i 's/security.useSystemPropertiesFile=true/security.useSystemProperties
 # Create the "real" structure of the install.
 RUN \
   mkdir -p ${OSH_HOME} && \
+  mkdir -p ${OSH_HOME}/defaultconfig && \
 #  mkdir -p ${OSH_HOME}/config && \
 #  mkdir -p ${OSH_HOME}/config/trusted-certs && \
   mkdir -p ${OSH_HOME}/data && \
@@ -119,11 +120,8 @@ COPY --from=build_container ./buildDir/build/distributions/osh-node*.zip /tmp/.
 RUN unzip /tmp/osh-node-*.zip "*" -d /opt
 RUN mv /opt/osh-node-*/* ${OSH_HOME}
 RUN rmdir /opt/osh-node-*
-#COPY --from=build_container ./buildDir/distributions/common/scripts/* ${OSH_HOME}/
-#COPY --from=build_container ./buildDir/distributions/common/keystores/* ${OSH_HOME}/config/
-#COPY --from=build_container ./buildDir/distributions/common/config/config.json ${OSH_HOME}/config/
-#COPY --from=build_container ./buildDir/distributions/common/config/logback.xml ${OSH_HOME}/config/
-#COPY --from=build_container ./buildDir/distributions/common/trusted_certificates/* ${OSH_HOME}/config/trusted-certs/
+COPY config/config.json config/logback.xml ${OSH_HOME}/defaultconfig/
+COPY config/trusted-certs/* ${OSH_HOME}/config/trusted-certs/
 
 # Set permissions appropriately. All directories are given 770 mode. All files
 # are given 660. And "*.sh" in the OSH_HOME dir are given 770.
