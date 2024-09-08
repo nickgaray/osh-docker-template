@@ -168,8 +168,8 @@ the container, update path to location for database files
 
      java -Xmx2g -Dlogback.configurationFile=./logback.xml -cp "lib/*" \
      -Djava.system.class.loader="org.sensorhub.utils.NativeClassLoader" \
-     -Djavax.net.ssl.keyStore="./osh-keystore.p12" -Djavax.net.ssl.keyStorePassword="atakatak" \
-     -Djavax.net.ssl.trustStore="./osh-keystore.p12" -Djavax.net.ssl.trustStorePassword="atakatak" \
+     -Djavax.net.ssl.keyStore="./osh-keystore.p12" -Djavax.net.ssl.keyStorePassword="password" \
+     -Djavax.net.ssl.trustStore="./osh-keystore.p12" -Djavax.net.ssl.trustStorePassword="password" \
      org.sensorhub.impl.SensorHub ./data/config.json ./data/db
 
 ## Testing Deployment
