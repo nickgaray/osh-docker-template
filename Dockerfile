@@ -176,7 +176,3 @@ VOLUME ${OSH_HOME}/userclasses
 # after install. These will be second in the classpath, before other libraries
 # that are included in the image.
 VOLUME ${OSH_HOME}/userlib
-
-# Any additional OSGi Bundles that the user may want to include
-# after install.
-VOLUME ${OSH_HOME}/bundles
