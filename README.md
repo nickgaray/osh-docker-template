@@ -170,7 +170,7 @@ the container, update path to location for database files
      -Djava.system.class.loader="org.sensorhub.utils.NativeClassLoader" \
      -Djavax.net.ssl.keyStore="./osh-keystore.p12" -Djavax.net.ssl.keyStorePassword="password" \
      -Djavax.net.ssl.trustStore="./osh-keystore.p12" -Djavax.net.ssl.trustStorePassword="password" \
-     org.sensorhub.impl.SensorHub ./data/config.json ./data/db
+     org.sensorhub.impl.SensorHub ./config/config.json ./data/db
 
 ## Testing Deployment
 
