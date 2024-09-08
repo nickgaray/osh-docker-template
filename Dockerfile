@@ -87,7 +87,7 @@ RUN \
   mkdir -p ${OSH_HOME} && \
   mkdir -p ${OSH_HOME}/defaultconfig && \
 #  mkdir -p ${OSH_HOME}/config && \
-#  mkdir -p ${OSH_HOME}/config/trusted-certs && \
+#  mkdir -p ${OSH_HOME}/config/trusted_certs && \
   mkdir -p ${OSH_HOME}/data && \
   mkdir -p ${OSH_HOME}/db && \
   mkdir -p ${OSH_HOME}/lib && \
@@ -121,7 +121,7 @@ RUN unzip /tmp/osh-node-*.zip "*" -d /opt
 RUN mv /opt/osh-node-*/* ${OSH_HOME}
 RUN rmdir /opt/osh-node-*
 COPY config/config.json config/logback.xml ${OSH_HOME}/defaultconfig/
-COPY config/trusted-certs/* ${OSH_HOME}/config/trusted-certs/
+COPY config/trusted_certs/* ${OSH_HOME}/config/trusted_certs/
 
 # Set permissions appropriately. All directories are given 770 mode. All files
 # are given 660. And "*.sh" in the OSH_HOME dir are given 770.
