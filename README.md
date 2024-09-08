@@ -164,13 +164,7 @@ to be updated, if doing this, so that config.json and db are correctly reference
 
 If using mounted volumes and the configuration file (config.json) is hosted on the mounted volume, then change the
 launch.[sh | bat] to point to the correct path for the mounted volumes. Similarly, if data is to be stored externally to
-the container, update path to location for database files
-
-     java -Xmx2g -Dlogback.configurationFile=./logback.xml -cp "lib/*" \
-     -Djava.system.class.loader="org.sensorhub.utils.NativeClassLoader" \
-     -Djavax.net.ssl.keyStore="./osh-keystore.p12" -Djavax.net.ssl.keyStorePassword="password" \
-     -Djavax.net.ssl.trustStore="./osh-keystore.p12" -Djavax.net.ssl.trustStorePassword="password" \
-     org.sensorhub.impl.SensorHub ./config/config.json ./data/db
+the container, update path to location for database files.
 
 ## Testing Deployment
 

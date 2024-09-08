@@ -45,7 +45,7 @@ RUN git clone -b ${BRANCH} --recursive ${REPO_URL} .
 
 # Run build excluding unit tests and OSGi bundle generation, the latter is not needed for this deployment setup
 RUN chmod +x ./gradlew 
-RUN ./gradlew build -x test
+RUN ./gradlew build -x test -x osgi
 
 ## root command(s)
 # RUN <command(s)>
@@ -87,13 +87,11 @@ RUN \
   mkdir -p ${OSH_HOME} && \
   mkdir -p ${OSH_HOME}/defaultconfig && \
 #  mkdir -p ${OSH_HOME}/config && \
-#  mkdir -p ${OSH_HOME}/config/trusted_certs && \
   mkdir -p ${OSH_HOME}/data && \
   mkdir -p ${OSH_HOME}/db && \
   mkdir -p ${OSH_HOME}/lib && \
   mkdir -p ${OSH_HOME}/userlib && \
-  mkdir -p ${OSH_HOME}/userclasses && \
-  mkdir -p ${OSH_HOME}/bundles
+  mkdir -p ${OSH_HOME}/userclasses
 
 # Remove unneeded groups and accounts. OpenSCAP CCE-85987-6.
 RUN \
@@ -121,7 +119,6 @@ RUN unzip /tmp/osh-node-*.zip "*" -d /opt
 RUN mv /opt/osh-node-*/* ${OSH_HOME}
 RUN rmdir /opt/osh-node-*
 COPY config/config.json config/logback.xml ${OSH_HOME}/defaultconfig/
-COPY config/trusted_certs/* ${OSH_HOME}/config/trusted_certs/
 
 # Set permissions appropriately. All directories are given 770 mode. All files
 # are given 660. And "*.sh" in the OSH_HOME dir are given 770.
