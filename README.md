@@ -23,9 +23,20 @@ with appropriate values. See the placeholders description below the build comman
     docker build -t [tag] . -f dockerfile --build-arg BRANCH=[branch] --build-arg REPO_URL=[url]
 
 - **tag**: The tag to assign to the image being built
-- **branch**: The branch to check out
+- **branch**: The branch (or tag) to check out
 - **url**: The URL of the repository to an OpenSensorHub project based
   on [OSH Node Dev Template](https://github.com/opensensorhub/osh-node-dev-template.git)
+
+Note: If possible, it is best to specify a tag instead of a branch to
+checkout. Docker caches results based on the commands executed, without
+knowing what the command will do. The Dockerfile will run a git clone
+against the given branch (or tag) during the build. If the build is done
+a second time after the remote branch was updated, docker will not
+realize this and will use the cached result instead of the latest
+version of the branch. By using tags, every new version will have
+a different git clone command, which will then be ran when the tag
+changes. Alternatively, add `--no-cache` to the build command to force
+a clean build.
 
 ## Understanding Docker Commands
 
