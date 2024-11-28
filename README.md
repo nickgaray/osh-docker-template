@@ -76,8 +76,7 @@ It is highly recommended that the user be or become familiar with docker and the
 
 ## Executing via Docker Compose
 
-This option will require the directories for mounted volumes to be created and the ownership set to the osh uid and gid
-prescribed in the Dockerfile. In addition, the ```docker_compose.yml``` file must be edited to the image to use from
+The ```docker_compose.yml``` file must be edited to the image to use from
 the docker repository as well as the ports to expose where in the mapping for ports operates on the same principle as
 the **-p** command line switch discussed in the previous section.
 

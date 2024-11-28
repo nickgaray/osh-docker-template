@@ -134,22 +134,19 @@ RUN apt remove -y unzip
 # CVE-2019-20916, PRISMA-2022-0168
 RUN rm -rf /usr/lib/python3.6
 
-## Default user
-#USER <default user>:0
-USER ${USER_UID}:${USER_GID}
-
 ## Expose port(s)
 # EXPOSE <#>
 EXPOSE 8080 8443
 
-## Default startup executable. Will treat elements of 'docker run' command, or elements of "CMD" input, as parameters.
-# ENTRYPOINT ["<executable>"]
-# Specifying a docker entrypoint that can do a little extra stuff at startup.
-# Ultimately, it will end up calling "java" to run the SensorHub class.
-ENTRYPOINT [ "./launch.sh" ]
+# Pass these to entrypoint
+ENV USER_UID=${USER_UID}
+ENV USER_GID=${USER_GID}
+ENV OSH_HOME=${OSH_HOME}
 
-## Default startup input. Will be overridden by elements of 'docker run' command.
-# CMD ["<input to be run from the working directory>"]
+# ENTRYPOINT will be called with CMD as arguments.
+COPY ./entrypoint.sh .
+ENTRYPOINT [ "./entrypoint.sh"]
+CMD [ "./launch.sh" ]
 
 ## Declare volume(s) for mount point directories
 # VOLUME [<"/first/container/directory"><, "/second/container/directory", ...]
