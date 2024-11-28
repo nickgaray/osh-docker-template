@@ -11,6 +11,16 @@ deployable distribution.
 This docker template allows you to point to a specific branch and repository URL in order
 to clone, build, and deploy your own nodes in a containerized environment.
 
+## TL;DR
+
+To quickly get OSH running with the default project and settings, clone
+this repository and run:
+
+    docke compose up
+
+Then go to http://localhost:8080/sensorhub/admin and login in with
+username "admin", password "admin".
+
 ## Cloning this Repository
 
     git clone https://github.com/nickgaray/osh-docker-template.git
