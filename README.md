@@ -20,7 +20,7 @@ to clone, build, and deploy your own nodes in a containerized environment.
 Building is as simple as running the following command replacing the placeholders in ```[]```
 with appropriate values. See the placeholders description below the build command template.
 
-    docker build -t [tag] . -f dockerfile --build-arg BRANCH=[branch] --build-arg REPO_URL=[url]
+    docker build -t [tag] . -f Dockerfile --build-arg BRANCH=[branch] --build-arg REPO_URL=[url]
 
 - **tag**: The tag to assign to the image being built
 - **branch**: The branch (or tag) to check out
