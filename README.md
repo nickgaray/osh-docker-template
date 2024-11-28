@@ -38,13 +38,17 @@ a different git clone command, which will then be ran when the tag
 changes. Alternatively, add `--no-cache` to the build command to force
 a clean build.
 
+To get started with the default osh-node-dev-template, you can run:
+
+    docker build -t osh-node-dev-template . -f Dockerfile --build-arg BRANCH=master --build-arg REPO_URL=https://github.com/opensensorhub/osh-node-dev-template.git
+
 ## Understanding Docker Commands
 
 It is highly recommended that the user be or become familiar with docker and the following commands
 
 ● To run Docker image detached exposing ports
 
-     sudo docker run -d -p443:443 [tag]
+     sudo docker run -d -p 8080:8080 -p 8443:8443 [tag]
 
 - **-p port_visible_to_world:port_exposed_docker_container**:
   Expose additional ports by including more -p switches, one for each port to be mapped
@@ -155,7 +159,7 @@ where data is typically stored in OSH, making this data accessible outside the d
 executions of the instance. The config.json can be stored in this path to persist configuration. The launch script needs
 to be updated, if doing this, so that config.json and db are correctly referenced.
 
-     docker run -d -p 443:443 -p80:80 \
+     docker run -d -p 8443:8443 -p 8080:8080 \
      -it --name [container-friendly-name] \
      --mount type=bind,source=[mount-path]/data,target=/opt/[osh-node-path]/data \
      [tag]
