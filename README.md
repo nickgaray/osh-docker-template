@@ -87,14 +87,9 @@ It is highly recommended that the user be or become familiar with docker and the
 
 ## Executing via Docker Compose
 
-The ```docker_compose.yml``` file must be edited to the image to use from
-the docker repository as well as the ports to expose where in the mapping for ports operates on the same principle as
-the **-p** command line switch discussed in the previous section.
+The ```docker_compose.yml``` file must be edited to the image to use from the docker repository.
 
     image: [DOCKER REPO URL]/[PATH]/[PROJECT]:[TAG]
-    ports:
-      - [EXTERNAL]:[INTERNAL]/tcp
-      - [EXTERNAL]:[INTERNAL]/tcp
 
 - **DOCKER REPO URL**:
   The URL of the docker repo to pull the image from
