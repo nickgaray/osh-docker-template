@@ -130,10 +130,6 @@ The command to execute is:
 
      docker compose down
 
-### Shutting Down via Docker Compose
-
-     docker compose down
-
 ## Executing or Running a Docker Container Manually
 
 ● To run docker image detached with mounted file system & name, using present working directory for filesystem source
