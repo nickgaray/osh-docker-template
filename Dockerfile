@@ -41,7 +41,7 @@ RUN apt-get update \
 # Retrieve the sources from a repo using the REPO_URL and BRANCH passed as a command line argument
 ARG REPO_URL
 ARG BRANCH
-RUN git clone -b ${BRANCH} --recursive ${REPO_URL} .
+RUN git clone --depth 1 --shallow-submodules -b ${BRANCH} --recursive ${REPO_URL} .
 
 # Run build excluding unit tests and OSGi bundle generation, the latter is not needed for this deployment setup
 RUN chmod +x ./gradlew 
