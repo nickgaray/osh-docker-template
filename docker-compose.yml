@@ -13,7 +13,11 @@
 name: osh-node
 services:
   osh:
-    image: [DOCKER REPO URL]/[PATH]/[PROJECT]:[TAG]
+    build:
+      context: .
+      args:
+        REPO_URL: https://github.com/opensensorhub/osh-node-dev-template.git
+        BRANCH: master
     ports:
       - 8080:8080/tcp
       - 8443:8443/tcp

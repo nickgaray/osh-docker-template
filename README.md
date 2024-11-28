@@ -92,20 +92,65 @@ It is highly recommended that the user be or become familiar with docker and the
 
 ## Executing via Docker Compose
 
-The ```docker_compose.yml``` file must be edited to the image to use from the docker repository.
+Docker compose is originally intended for creating multiple related containers, but even for a single container
+a ```docker-compose.yml``` file is a convenient way to store configuration about creating and running docker containers.
 
-    image: [DOCKER REPO URL]/[PATH]/[PROJECT]:[TAG]
+The image to be used can be specified in different ways. Edit the ```docker-compose.yml``` file to your needs. If you
+leave it unchanged, it will run a container based on the [template project
+repository](https://github.com/opensensorhub/osh-node-dev-template).
 
-- **DOCKER REPO URL**:
-  The URL of the docker repo to pull the image from
-- **PATH**:
+To run the compose file:
+
+    sudo docker compose up
+
+Add `-d` to run in the background. On older systems, you might need `docker-compose` instead of `docker compose`.
+
+### Let compose build an image
+You can have docker compose automatically build a new image, using the Dockerfile in this repository and a reference to
+an opensensorhub project repository:
+
+    osh:
+      build:
+        context: .
+        args:
+          REPO_URL: [branch]
+          BRANCH: [url]
+
+See the docs about "Building the project" above for details on how to fill in `[branch]` and `[url]`. Note that `docker
+compose up` will only build an image if none exists yet. Add `--build` to force building it again.
+
+### Let compose use a locally built image
+You can have docker compose use an image you previously built manually with e.g. `docker build` (see "Building the
+project" above). To do so, remove the `build` section from the ```docker-compose.yml``` file and add:
+
+    osh:
+      image: [image]
+
+Here, the `[image]` is whatever you passed to `docker build -t`
+
+### Let compose pull an iamge from docker hub
+You can also have docker compose use an image from a remote docker repository. To do so, remove the `build` section from the
+```docker-compose.yml``` file and add:
+
+    osh:
+      image: [repo_url]/[path]/[project]:[tag]
+
+- **repo_url**:
+  The URL of the docker repo to pull the image from (defaults to docker hub)
+- **path**:
   The path within the docker repo to the hosted project images
-- **PROJECT**:
+- **project**:
   The project or image name to pull
-- **TAG**:
-  The tag of the image to pull, such as a version identifier
+- **tag**:
+  The tag of the image to pull, such as a version identifier (defaults to latest)
 
-## Declare volume(s) for mount point directories
+### Volume(s) for mount point directories
+The default compose file declares a number of volume mounts, which are
+directories in the current directory that will be mounted inside the
+container, so you can e.g. make config chagnes or read logfiles outside
+of the container.
+
+The default ```docker-compose.yml``` file creates these directories:
 
 ● **config**: Location of config.json and logback.xml.
 
@@ -120,12 +165,8 @@ will be first in the classpath, before any other libraries included in the image
 ● **userlib**: Any additional libraries that the user may want to include in the classpath after install. These will be
 second in the classpath, before other libraries that are included in the image.
 
-The command to execute is:
+● **logs**: Log files are created here, both global and per-module (named after the modules' uuids).
 
-     docker compose -f docker_compose.yml up -d
-
-- **-d**
-  Executes the image in detached mode, so it is safe to close the terminal window
 
 ### Shutting Down via Docker Compose
 
